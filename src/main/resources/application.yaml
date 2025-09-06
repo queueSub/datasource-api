@@ -23,3 +23,15 @@ spring:
       path: /h2-console
 server:
   port: 8999
+
+# Swagger UI configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    display-request-duration: true
+  api-docs:
+    path: /api-docs
+  show-actuator: false
+  default-produces-media-type: application/json

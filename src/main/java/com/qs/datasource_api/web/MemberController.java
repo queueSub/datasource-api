@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
-public class MemberController {
+public class MemberController implements MemberControllerSpec {
     private final BusinessApplicationService businessApplicationService;
 
     @GetMapping("/{memberId}/businesses")
@@ -26,5 +26,4 @@ public class MemberController {
     public List<PurchaseOrderResponse> getUserPurchaseOrders(@PathVariable Long memberId) {
         return businessApplicationService.getUserPurchaseOrders(memberId);
     }
-
 }
