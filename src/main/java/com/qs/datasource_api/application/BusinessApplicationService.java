@@ -1,10 +1,13 @@
 package com.qs.datasource_api.application;
 
+import com.qs.datasource_api.domain.entity.Business;
 import com.qs.datasource_api.domain.entity.Member;
 import com.qs.datasource_api.domain.repository.BusinessRepository;
 import com.qs.datasource_api.domain.repository.MemberRepository;
+import com.qs.datasource_api.domain.repository.ProductRepository;
 import com.qs.datasource_api.domain.repository.PurchaseOrderRepository;
 import com.qs.datasource_api.web.response.BusinessResponse;
+import com.qs.datasource_api.web.response.ProductResponse;
 import com.qs.datasource_api.web.response.PurchaseOrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ public class BusinessApplicationService {
     private final BusinessRepository businessRepository;
     private final MemberRepository memberRepository;
     private final PurchaseOrderRepository purchaseOrderRepository;
+    private final ProductRepository productRepository;
 
     public List<BusinessResponse> getUserBusinesses(Long memberId) {
         Member member = memberRepository.findById(memberId).orElseThrow();
@@ -29,5 +33,11 @@ public class BusinessApplicationService {
         Member member = memberRepository.findById(memberId).orElseThrow();
         return purchaseOrderRepository.findByOrderMember(member).stream()
                 .map(PurchaseOrderResponse::from).toList();
+    }
+
+    public List<ProductResponse> getBusinessProducts(Long businessId) {
+        Business business = businessRepository.findById(businessId).orElseThrow();
+        return productRepository.findByBusiness(business)
+                .stream().map(ProductResponse::from).toList();
     }
 }

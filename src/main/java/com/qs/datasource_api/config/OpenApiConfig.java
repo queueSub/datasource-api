@@ -17,14 +17,14 @@ public class OpenApiConfig {
     public OpenAPI openAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Datasource API")
-                        .description("API for managing members, businesses, products, and purchase orders")
-                        .version("v1.0.0")
-                        .contact(new Contact()
-                                .name("API Support")
-                                .email("support@example.com"))
-                        .license(new License()
-                                .name("Apache 2.0")
-                                .url("https://www.apache.org/licenses/LICENSE-2.0")));
+                              .title("Datasource API")
+                              .description("API for managing members, businesses, products, and purchase orders")
+                              .version("v1.0.0")
+                              .contact(new Contact()
+                                               .name("API Support")
+                              )
+                              .license(new License()
+                                               .name("Apache 2.0")
+                                               .url("https://www.apache.org/licenses/LICENSE-2.0")));
     }
 }
