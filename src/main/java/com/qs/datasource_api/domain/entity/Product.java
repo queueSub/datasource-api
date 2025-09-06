@@ -32,11 +32,11 @@ public class Product {
     @Column(precision = 10, scale = 2)
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "business_id", nullable = false)
     private Business business;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 
     public Product(String name, Integer inventory, String description, BigDecimal price, Business business) {

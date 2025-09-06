@@ -22,7 +22,7 @@ public class Business {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "representative_member_id", nullable = false)
     private Member representativeMember;
 
@@ -32,7 +32,7 @@ public class Business {
     @Column(name = "business_code", length = 20)
     private String businessCode;
 
-    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "business", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
     public Business(String name, Member representativeMember, String introduction, String businessCode) {

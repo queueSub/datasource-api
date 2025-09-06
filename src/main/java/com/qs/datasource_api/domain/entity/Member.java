@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,10 @@ public class Member {
     @Column(name = "birth_day")
     private LocalDate birthDay;
 
-    @OneToMany(mappedBy = "representativeMember", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "representativeMember", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Business> businesses = new ArrayList<>();
 
-    @OneToMany(mappedBy = "orderMember", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderMember", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 
     public Member(String name, LocalDate birthDay) {
