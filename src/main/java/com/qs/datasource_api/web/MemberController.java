@@ -1,7 +1,8 @@
 package com.qs.datasource_api.web;
 
-import com.qs.datasource_api.domain.service.BusinessService;
+import com.qs.datasource_api.application.BusinessApplicationService;
 import com.qs.datasource_api.web.response.BusinessResponse;
+import com.qs.datasource_api.web.response.PurchaseOrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,19 +15,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
 public class MemberController {
-    private final BusinessService businessService;
+    private final BusinessApplicationService businessApplicationService;
 
     @GetMapping("/{memberId}/businesses")
     public List<BusinessResponse> getUserBusinesses(@PathVariable Long memberId) {
-        return businessService.getUserBusinesses(memberId).stream()
-                .map(business ->
-                             new BusinessResponse(
-                                     business.getId(),
-                                     business.getName(),
-                                     business.getIntroduction(),
-                                     business.getBusinessCode()
-                             )
-                ).toList();
+        return businessApplicationService.getUserBusinesses(memberId);
+    }
+
+    @GetMapping("/{memberId}/orders")
+    public List<PurchaseOrderResponse> getUserPurchaseOrders(@PathVariable Long memberId) {
+        return businessApplicationService.getUserPurchaseOrders(memberId);
     }
 
 }
