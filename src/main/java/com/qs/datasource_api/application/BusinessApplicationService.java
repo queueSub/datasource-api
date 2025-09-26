@@ -40,4 +40,13 @@ public class BusinessApplicationService {
         return productRepository.findByBusiness(business)
                 .stream().map(ProductResponse::from).toList();
     }
+
+    public List<ProductResponse> getUserBusinessProducts(Long memberId) {
+        Member member = memberRepository.findById(memberId).orElseThrow();
+        return businessRepository.findByRepresentativeMember(member)
+                .stream()
+                .flatMap(business -> productRepository.findByBusiness(business).stream())
+                .map(ProductResponse::from)
+                .toList();
+    }
 }

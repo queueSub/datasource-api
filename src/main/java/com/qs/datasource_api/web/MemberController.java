@@ -2,6 +2,7 @@ package com.qs.datasource_api.web;
 
 import com.qs.datasource_api.application.BusinessApplicationService;
 import com.qs.datasource_api.web.response.BusinessResponse;
+import com.qs.datasource_api.web.response.ProductResponse;
 import com.qs.datasource_api.web.response.PurchaseOrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,5 +26,10 @@ public class MemberController implements MemberControllerSpec {
     @GetMapping("/{memberId}/orders")
     public List<PurchaseOrderResponse> getUserPurchaseOrders(@PathVariable Long memberId) {
         return businessApplicationService.getUserPurchaseOrders(memberId);
+    }
+
+    @GetMapping("/{memberId}/products")
+    public List<ProductResponse> getUserBusinessProducts(@PathVariable Long memberId) {
+        return businessApplicationService.getUserBusinessProducts(memberId);
     }
 }
